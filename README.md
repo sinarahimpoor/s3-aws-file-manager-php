@@ -1,3 +1,6 @@
+![UI Screenshot](screenshot.png)
+
+
 # An AWS S3 File Manager
 
 This repository contains a simple PHP web application for managing files and folders
