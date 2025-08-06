@@ -1,0 +1,13 @@
+{
+  "name": "user/s3filemanager",
+  "description": "Simple PHP based web interface for managing files in an AWS S3 compatible storage",
+  "type": "project",
+  "require": {
+    "aws/aws-sdk-php": "^3.279"
+  },
+  "autoload": {
+    "psr-4": {
+      "S3FileManager\\": "src/"
+    }
+  }
+}
