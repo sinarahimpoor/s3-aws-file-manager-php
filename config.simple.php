@@ -10,6 +10,8 @@
  * DO NOT commit your real credentials into version control. Use environment
  * variables or a local override instead. See README for more details.
  */
+$LOGIN_USERNAME = 'admin'; // admin username
+$LOGIN_PASSWORD = '123456'; // admin password
 $AWS_ACCESS_KEY_ID = "Xucczqg2VrYb8jchlWG";
 $AWS_SECRET_ACCESS_KEY = "lLZfpmrANUGFNBNclxiKT7lKGM6dcwh534Ylph";
 $AWS_DEFAULT_REGION = "us-east-1";

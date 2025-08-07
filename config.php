@@ -10,11 +10,13 @@
  * DO NOT commit your real credentials into version control. Use environment
  * variables or a local override instead. See README for more details.
  */
-$AWS_ACCESS_KEY_ID = "";
-$AWS_SECRET_ACCESS_KEY = "";
-$AWS_DEFAULT_REGION = "us-east-1";
-$AWS_BUCKET_NAME = "public";
-$AWS_ENDPOINT = "https://";
+$LOGIN_USERNAME = 'admin'; // admin username
+$LOGIN_PASSWORD = '123456'; // admin password
+$AWS_ACCESS_KEY_ID = "AWS_ACCESS_KEY_ID";
+$AWS_SECRET_ACCESS_KEY = "AWS_ACCESS_KEY_ID";
+$AWS_DEFAULT_REGION = "AWS_DEFAULT_REGION"; #us-east-1
+$AWS_BUCKET_NAME = "AWS_BUCKET_NAME";
+$AWS_ENDPOINT = "AWS_ENDPOINT"; #https://services-storage.com
 
 return [
     // AWS access key and secret. These can be overridden by environment
@@ -41,5 +43,5 @@ return [
     // Base URL used to build publicly accessible links. For example, if your
     // then set this value to that URL (without the key). The application will
     // append the object key to this prefix to display the public URL in the UI.
-    'public_base_url' => getenv('public_base_url') ?: $AWS_ENDPOINT .'/' . $AWS_BUCKET_NAME .'/',
+    'public_base_url' => getenv('public_base_url') ?: $AWS_ENDPOINT . '/' . $AWS_BUCKET_NAME . '/',
 ];

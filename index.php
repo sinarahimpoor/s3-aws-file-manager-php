@@ -9,10 +9,17 @@
  * AWS SDK for PHP.
  */
 
+
 require __DIR__ . '/vendor/autoload.php';
 
 // Start session to store clipboard for copy/cut operations
 session_start();
+
+// Check login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header('Location: login.php');
+    exit;
+}
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
@@ -21,9 +28,50 @@ use Aws\Credentials\Credentials;
 // Load configuration
 $config = require __DIR__ . '/config.php';
 
+// Validate config
+$configError = false;
+$credentialsError = false;
+if (!is_array($config) || empty($config['region']) || empty($config['version']) || empty($config['bucket']) || (isset($config['endpoint']) && $config['endpoint'] === 'https://')) {
+    $configError = true;
+}
+// Check credentials array
+if (!isset($config['credentials']) || !is_array($config['credentials']) || empty($config['credentials']['key']) || empty($config['credentials']['secret'])) {
+    $credentialsError = true;
+}
+
+if ($configError || $credentialsError) {
+    ?><!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>S3 File Manager</title>
+        <link rel="stylesheet" href="assets/bootstrap.min.css">
+    </head>
+
+    <body class="bg-light">
+        <div class="container py-4">
+            <div class="alert alert-danger" role="alert">
+                <strong>Configuration Error:</strong> Please complete the <code>config.php</code> file with valid AWS S3
+                settings.<br>
+                Make sure <code>endpoint</code> is not just <code>https://</code> and all required fields are filled.<br>
+                <?php if ($credentialsError): ?>
+                    <span class="d-block mt-2">Credentials are missing or incomplete. Please provide both <code>key</code> and
+                        <code>secret</code> in the <code>credentials</code> array.</span>
+                <?php endif; ?>
+            </div>
+        </div>
+    </body>
+
+    </html>
+    <?php
+    exit;
+}
+
 // Build the S3 client configuration array. If a custom endpoint is set we
 // enable path‑style addressing which is required by some S3 compatible
-// services. See FileGator docs for an example configuration【389494877136420†L133-L161】.
+// services. See FileGator docs for an example configuration.
 $clientConfig = [
     'region' => $config['region'],
     'version' => $config['version'],
@@ -306,7 +354,8 @@ function parentPrefix(string $prefix): string
     return substr($trim, 0, $pos + 1);
 }
 
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
