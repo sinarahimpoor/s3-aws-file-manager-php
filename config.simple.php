@@ -10,11 +10,11 @@
  * DO NOT commit your real credentials into version control. Use environment
  * variables or a local override instead. See README for more details.
  */
-$AWS_ACCESS_KEY_ID = "";
-$AWS_SECRET_ACCESS_KEY = "";
+$AWS_ACCESS_KEY_ID = "Xucczqg2VrYb8jchlWG";
+$AWS_SECRET_ACCESS_KEY = "lLZfpmrANUGFNBNclxiKT7lKGM6dcwh534Ylph";
 $AWS_DEFAULT_REGION = "us-east-1";
 $AWS_BUCKET_NAME = "public";
-$AWS_ENDPOINT = "https://services-storage.bit24.cash";
+$AWS_ENDPOINT = "https://services-storage.com";
 
 return [
     // AWS access key and secret. These can be overridden by environment
