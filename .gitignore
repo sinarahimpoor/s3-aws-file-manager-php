@@ -1,0 +1,17 @@
+# Ignore vendor folder
+/vendor/
+
+# Composer files
+composer.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs or cache
+*.log
+*.cache
