@@ -1,4 +1,7 @@
-# S3 File Manager
+![UI Screenshot](screenshot.png)
+
+
+# An AWS S3 File Manager
 
 This repository contains a simple PHP web application for managing files and folders
 in an Amazon S3 bucket or any S3‑compatible object storage (such as MinIO,
