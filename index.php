@@ -320,7 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// List objects in current prefix using delimiter to separate folders【29693054033651†L184-L209】
+// List objects in current prefix using delimiter to separate folders
 $objects = [];
 $commonPrefixes = [];
 try {
@@ -331,6 +331,8 @@ try {
     ]);
     $objects = $result['Contents'] ?? [];
     $commonPrefixes = $result['CommonPrefixes'] ?? [];
+} catch (Aws\Exception\UnresolvedEndpointException $e) {
+    $error = 'Custom endpoint is not a valid URI. Please check the <code>endpoint</code> value in <code>config.php</code> and provide a valid URL.';
 } catch (S3Exception $e) {
     $error = $e->getAwsErrorMessage();
 }
