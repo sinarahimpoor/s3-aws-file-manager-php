@@ -2,7 +2,6 @@
 session_start();
 require_once 'config.php';
 
-// اگر قبلا لاگین شده، به index.php برو
 // If already logged in, redirect to index.php
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     header('Location: index.php');
